@@ -1,16 +1,20 @@
+import { Widget } from "./Widget/Widget";
+
 export const App = () => {
   return (
     <div
       style={{
         height: '100vh',
         display: 'flex',
+        // flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         fontSize: 40,
-        color: '#010101'
+        color: '#fff',
+        backgroundColor:'#000',
       }}
     >
-      React homework template
+      <Widget></Widget>
     </div>
   );
 };
