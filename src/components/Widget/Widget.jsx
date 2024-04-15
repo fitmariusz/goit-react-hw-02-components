@@ -1,29 +1,11 @@
-import { useState } from "react";
+
 import css from "./Widget.module.css"
 
  
 
-export const Widget = () => { 
-    const [valueGood, setGoodValue] = useState(0);
-    const [valueNeutral, setNeutralValue] = useState(0);
-    const [valueBad, setBadValue] = useState(0);
-
-    const onClickGood = () => {
-        setGoodValue(prevValue => prevValue += 1)
-        console.log("good" );
-    }
-
-    const onClickNeutral = () => {
-        setNeutralValue(prevValue => prevValue += 1)
-        console.log("neutral");
-    }
-
-    const onClickBad = () => {
-        setBadValue(prevValue => prevValue += 1)
-        console.log("bad");
-    }
-
-
+export const Widget = (props) => {
+    const { onClickBad, onClickGood, onClickNeutral, valueBad, valueGood, valueNeutral, valuePositive, valueTotal } = props;
+ 
 return (
     <>
         <div>
@@ -38,6 +20,8 @@ return (
                 <li className={css.liStatistic}>Good: <span>{valueGood}</span></li>
                 <li className={css.liStatistic}>Neutral: <span>{valueNeutral}</span></li>
                 <li className={css.liStatistic}>Bad: <span>{valueBad}</span></li>
+                <li className={css.liStatistic}>Total: <span>{valueTotal}</span></li>
+                <li className={css.liStatistic}>Positive: <span>{valuePositive}</span>%</li> 
             </div>
         </div>
     </>
