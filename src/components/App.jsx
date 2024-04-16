@@ -1,8 +1,9 @@
 import './App.css'
-// import { Widget } from "./Widget/Widget";
 import { Statistic } from "./Statistics/statistics";
-import css from "./Widget/Widget.module.css"
+import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
+import { Notification } from './Notification/Notyfication';
 import { useState } from "react";
+import { Section } from './Section/Section';
 
 
 const INITIAL_STATE = {
@@ -14,7 +15,7 @@ const INITIAL_STATE = {
 
 export const App = () => {
     const [data, setData] = useState({ ...INITIAL_STATE});
-    const [isFeedback, setIsFeedback] = useState(false)
+    const [isFeedback, setIsFeedback] = useState(false);
 
     const onClick = (evt) => {
         setData(prevValue => {
@@ -33,35 +34,18 @@ export const App = () => {
 
 
   return (
-    <div>
-      {/* <Widget
-        valueBad={valueBad}
-        valueGood={valueGood}
-        valueNeutral={valueNeutral}
-        valuePositive={valuePositive}
-        valueTotal={valueTotal}
-        onClickBad={onClickBad}
-        onClickGood={onClickGood}
-        onClickNeutral={onClickNeutral}
-        ></Widget> */}
-        <div>
-            <h2>Please leave feedback</h2>
-            <div className={css.feedback}> 
-                <button type="button" id="good" className={css.buttonFeedback} onClick={onClick}>Good</button>
-                <button type="button" id="neutral" className={css.buttonFeedback} onClick={onClick}>Neutral</button>
-                  <button type="button" id="bad" className={css.buttonFeedback} onClick={onClick}>Bad</button>
-                  <p>{ isFeedback===true ? "yes" : "no"}</p>
-            </div>
-            <h2>Statistics</h2>
-            <div className={css.statistic}>
-                  <Statistic
-                    valueBad={data.bad}
-                    valueGood={data.good}
-                    valueNeutral={data.neutral}
-        valuePositive={countPositiveFeedbackPercentage()}
-        valueTotal={countTotalFeedback()}/> 
-            </div>
-        </div>
-    </div>
+    <>
+        <Section title="Please leave feedback" children={<FeedbackOptions options={Object.keys(data)} onClick={onClick} />} ></Section>
+        <Section title="Statistics" children={isFeedback === true ?
+            <Statistic
+                  valueBad={data.bad}
+                  valueGood={data.good}
+                  valueNeutral={data.neutral}
+                  valuePositive={countPositiveFeedbackPercentage()}
+                  valueTotal={countTotalFeedback()} />
+            :
+            <Notification message="There is no feedback"></Notification>}>
+        </Section>
+   </>
   );
 };
