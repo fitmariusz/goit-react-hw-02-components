@@ -34,7 +34,8 @@ export const App = () => {
 
 
   return (
-    <>
+      <>
+        <div>
         <Section title="Please leave feedback" children={<FeedbackOptions options={Object.keys(data)} onClick={onClick} />} ></Section>
         <Section title="Statistics" children={isFeedback === true ?
             <Statistic
@@ -46,6 +47,7 @@ export const App = () => {
             :
             <Notification message="There is no feedback"></Notification>}>
         </Section>
+        </div>
    </>
   );
 };
