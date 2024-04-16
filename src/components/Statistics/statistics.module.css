@@ -1,12 +1,3 @@
-.feedback{
-    display: flex;
-    gap: 5px;
-}
-
-.buttonFeedback{
-    padding: 10px;
-}
-
 
 .statistic {
     display: flex;
